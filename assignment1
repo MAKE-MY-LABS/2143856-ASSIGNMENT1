@@ -1,0 +1,73 @@
+
+//write a function that takes in an array and returns a sorted array
+function bubbleSort(arr) {
+  let swap;
+  do {
+    swap = false;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] > arr[i + 1]) {
+        swap = true;
+        let temp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = temp;
+      }
+    }
+  } while (swap);
+  return arr;
+}
+
+function selectionSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let min = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[min]) {
+        min = j;
+      }
+    }
+    if (i !== min) {
+      let temp = arr[i];
+      arr[i] = arr[min];
+      arr[min] = temp;
+    }
+  }
+  return arr;
+}
+
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let currentVal = arr[i];
+    let j;
+    for (j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+      arr[j + 1] = arr[j];
+    }
+    arr[j + 1] = currentVal;
+  }
+  return arr;
+}
+
+//write searching algorithms
+
+function linearSearch(arr, val) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === val) return i;
+  }
+  return -1;
+}
+
+function binarySearch(arr, val) {
+  let start = 0;
+  let end = arr.length - 1;
+  let middle = Math.floor((start + end) / 2);
+  while (arr[middle] !== val && start <= end) {
+    if (val < arr[middle]) {
+      end = middle - 1;
+    } else {
+      start = middle + 1;
+    }
+    middle = Math.floor((start + end) / 2);
+  }
+  return arr[middle] === val ? middle : -1;
+}
+
+
+
